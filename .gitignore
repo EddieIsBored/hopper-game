@@ -1,3 +1,6 @@
 # Ignore java binaries
 *.jar
 *.class
+
+# Ignore vscode files
+.vscode/
