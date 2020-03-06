@@ -1,0 +1,3 @@
+# Ignore java binaries
+*.jar
+*.class
