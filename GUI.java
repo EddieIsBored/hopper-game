@@ -1,3 +1,7 @@
+/**
+ * GUI - Sets up the GUI of the game
+ * @author Edward Nokes
+ */
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,10 +10,8 @@ public class GUI
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
 
-    public GUI()
-    {
+    public GUI() {
         panel.setLayout(new GridLayout(5,5));
-        frame.setVisible(true);
         frame.setSize(750,750);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -21,7 +23,7 @@ public class GUI
                 panel.add(arr[i][j]);
             }
         }
-
         frame.add(panel, BorderLayout.CENTER);
+        frame.setVisible(true);
     }
 }
