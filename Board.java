@@ -15,11 +15,6 @@ public class Board
 
     public Board() throws IOException
     {
-        Image water = ImageIO.read(getClass().getResource("/images/Water.png"));
-        Image lilypad = ImageIO.read(getClass().getResource("/images/LilyPad.png"));
-        Image redFrog = ImageIO.read(getClass().getResource("/images/RedFrog.png"));
-        Image greenFrog = ImageIO.read(getClass().getResource("/images/GreenFrog.png"));
-
         JButton[][] arr = new JButton[5][5];
 
         int k = 2;
@@ -30,11 +25,11 @@ public class Board
         
         for (int i = 0; i < 5; i++) { 
             for (int j = 0; j < 5; j++) { 
-                arr[i][j] = new JButton(new ImageIcon(water));
-                    if (k%7 == 0){
-                        k = k+2;
-                    }
-                    character.ReadChars(k);
+                arr[i][j] = new JButton(" R" + i + " C" + j);
+                //arr[i][j] = Square.createSquare(i, j, character.ReadChars(k));
+                if (k%7 == 0){
+                    k = k+2;
+                }
                 k++;
                 panel.add(arr[i][j]);
             }
