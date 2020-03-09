@@ -12,14 +12,6 @@ public class Main
     public static void main(final String[] args)
     {
         final GUI game = new GUI();
-
-        ReadByChar charArray = new ReadByChar();
-        try{
-            char[] array = charArray.ReadChars();
-        }
-        catch(IOException ioex){
-            System.out.println (ioex.toString());
-        }
         
     }   
 }
