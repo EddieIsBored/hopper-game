@@ -17,7 +17,7 @@ public class ReadByChar
      */
     public char ReadChars(int j) throws java.io.IOException
     {
-        byte[] bytes = new byte[40];
+        byte[] bytes = new byte[64];
         char c = 'a';
         try {
             InputStream f = new FileInputStream("board1.txt");   

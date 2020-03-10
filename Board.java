@@ -24,12 +24,12 @@ public class Board
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         for (int i = 0; i < 5; i++) { 
-            for (int j = 0; j < 5; j++) { 
+            for (int j = 0; j < 5; j++) {
                 arr[i][j] = tile.createSquare(i, j, character.ReadChars(k));
-                if (k%7 == 0){
-                    k = k+2;
+                if ((k+1)%7 == 0){
+                    k += 2;
                 }
-                k++;
+                k++; 
                 panel.add(arr[i][j]);
             }
         }
