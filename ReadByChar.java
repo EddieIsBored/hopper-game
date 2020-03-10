@@ -9,6 +9,12 @@ import java.io.IOException;
 
 public class ReadByChar
 {
+    /**
+     * Description - 
+     * @param j The offset of the character to be found in the text file.
+     * @return Returns a character
+     * @throws java.io.IOException When file not found
+     */
     public char ReadChars(int j) throws java.io.IOException
     {
         byte[] bytes = new byte[40];

@@ -11,7 +11,11 @@ public class Main
      */
     public static void main(final String[] args)
     {
-        final GUI game = new GUI();
-        
-    }   
+        try{
+            final Board game = new Board();
+        }
+        catch(IOException ioex){
+            System.out.println (ioex.toString());
+        }
+    }
 }

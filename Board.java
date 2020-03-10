@@ -12,13 +12,13 @@ public class Board
     private JPanel panel = new JPanel();
     private ReadByChar character = new ReadByChar();
     private Square tile = new Square();
-
+    
     public Board() throws IOException
     {
         JButton[][] arr = new JButton[5][5];
-
+        
         int k = 2;
-
+        
         panel.setLayout(new GridLayout(5,5));
         frame.setSize(750,750); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +26,6 @@ public class Board
         for (int i = 0; i < 5; i++) { 
             for (int j = 0; j < 5; j++) { 
                 arr[i][j] = tile.createSquare(i, j, character.ReadChars(k));
-
                 if (k%7 == 0){
                     k = k+2;
                 }
