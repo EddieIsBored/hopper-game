@@ -5,13 +5,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import javax.imageio.*;
 
 public class Board
 {
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private ReadByChar character = new ReadByChar();
+    private Square tile = new Square();
 
     public Board() throws IOException
     {
@@ -25,8 +25,8 @@ public class Board
         
         for (int i = 0; i < 5; i++) { 
             for (int j = 0; j < 5; j++) { 
-                arr[i][j] = new JButton(" R" + i + " C" + j);
-                //arr[i][j] = Square.createSquare(i, j, character.ReadChars(k));
+                arr[i][j] = tile.createSquare(i, j, character.ReadChars(k));
+
                 if (k%7 == 0){
                     k = k+2;
                 }
