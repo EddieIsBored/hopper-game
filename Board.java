@@ -4,19 +4,19 @@
  */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
 
-public class Board
+public class Board implements ActionListener
 {
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private ReadByChar character = new ReadByChar();
-    private Square tile = new Square();
-    
+    JButton[][] bArr = new JButton[5][5];
+    Square[][] sqArr = new Square[5][5];
+
     public Board() throws IOException
     {
-        JButton[][] arr = new JButton[5][5];
-        
         int k = 2;
         
         panel.setLayout(new GridLayout(5,5));
@@ -25,15 +25,22 @@ public class Board
         
         for (int i = 0; i < 5; i++) { 
             for (int j = 0; j < 5; j++) {
-                arr[i][j] = tile.createSquare(i, j, character.ReadChars(k));
+                sqArr[i][j] = new Square(i,j,character.ReadChars(k));
+                bArr[i][j] = sqArr[i][j].createButton(character.ReadChars(k));
                 if ((k+1)%7 == 0){
                     k += 2;
                 }
                 k++; 
-                panel.add(arr[i][j]);
+                bArr[i][j].addActionListener(this);
+                panel.add(bArr[i][j]);
             }
         }
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
+
+    }
+    public void actionPerformed(ActionEvent e){
+
     }
 }
+
