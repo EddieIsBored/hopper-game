@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class Board implements ActionListener
+public class Board
 {
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
@@ -30,17 +30,29 @@ public class Board implements ActionListener
                 if ((k+1)%7 == 0){
                     k += 2;
                 }
+                bArr[i][j].addActionListener(l);
+                bArr[i][j].setActionCommand(i + "," + j);
                 k++; 
-                bArr[i][j].addActionListener(this);
                 panel.add(bArr[i][j]);
             }
         }
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
-
     }
-    public void actionPerformed(ActionEvent e){
 
-    }
+    ActionListener l = new ActionListener(){
+        public void actionPerformed(ActionEvent e) {
+            String rowCol = e.getActionCommand();
+            String[] coords = rowCol.split(",");
+            int row = Integer.parseInt(coords[0]);
+            int column = Integer.parseInt(coords[1]);
+            sqArr[row][column].modifyButton(bArr[row][column],sqArr[row][column]);
+        }
+    };
 }
+
+
+
+
+
 

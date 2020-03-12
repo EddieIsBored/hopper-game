@@ -15,7 +15,7 @@ public class ReadByChar
      * @return Returns a character
      * @throws java.io.IOException When file not found
      */
-    public char ReadChars(int j) throws java.io.IOException
+    public char ReadChars(int j) throws IOException
     {
         byte[] bytes = new byte[64];
         char c = 'a';
