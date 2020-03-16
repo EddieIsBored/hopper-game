@@ -4,15 +4,16 @@
  */
 
 import javax.swing.*;
-import java.io.IOException;
 
-public class Square
+public class Square extends JButton
 {
     private int row;
     private int column;
+    private char type;
     private boolean hasFrog;
     private boolean isRedFrog;
     private boolean selected=false;
+    private boolean sSelected=false;
 
     ImageIcon water = new ImageIcon("images/Water.png");
     ImageIcon lilypad = new ImageIcon("images/LilyPad.png");
@@ -21,6 +22,13 @@ public class Square
     ImageIcon greenFrogS = new ImageIcon("images/GreenFrog2.png");
     ImageIcon redFrogS = new ImageIcon("images/RedFrog2.png");
 
+    /**
+     * Defines a square on the board
+     * @param i The row of the square
+     * @param j The column of the square
+     * @param type The type of the square, L is lilypad, G is the green frog, R is the red frog, default is water
+     */
+
     Square(int i, int j, char type){
         row = i;
         column = j;
@@ -28,41 +36,36 @@ public class Square
         switch(type){
             case 'L':
                 hasFrog = false;
+                type = 'L';
+                setIcon(lilypad);
                 break;
             case 'G':
                 hasFrog = true;
+                type = 'G';
+                setIcon(greenFrog);
                 break;
             case 'R':
                 hasFrog = true;
                 isRedFrog = true;
+                type = 'R';
+                setIcon(redFrog);
                 break;
             default:
                 hasFrog = false;
+                type = 'W';
+                setIcon(water);
         }
     }
+    /**
+     * Swaps a square to the Square input as 
+     * @param x The square the original Square will move to.
+     */
 
-    public void modifyButton(JButton x, Square y){
-        if (y.hasFrog() == true && y.isRedFrog() == false){
-            x.setIcon(greenFrogS);
-            selected = true;
-        }
-        if (y.hasFrog() == true && y.isRedFrog() == true){
-            x.setIcon(redFrogS);
-            selected = true;
-        }
-    }
-
-    public JButton createButton(char type) throws IOException{
-        switch(type){
-            case 'L':
-                return new JButton(lilypad);
-            case 'G':
-                return new JButton(greenFrog);
-            case 'R':
-                return new JButton(redFrog);
-            default:
-                return new JButton(water);
-        }
+    public void moveTo(Square x){
+        Icon oldIcon = getIcon();
+        Icon newIcon = x.getIcon();
+        x.setIcon(oldIcon);
+        setIcon(newIcon);
     }
 
     public int getRow(){
