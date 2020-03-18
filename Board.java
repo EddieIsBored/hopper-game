@@ -44,24 +44,27 @@ public class Board
             if(!(e.getSource() instanceof Square)){
                 return;
             }
-            // if(greenFrogTotal == 0){
-            //     return;
-            // }
+            if(greenFrogTotal == 0){
+                JOptionPane.showMessageDialog(frame, "YOU'VE WON!");
+            }
             if(square1 == null){
                 square1 = (Square)e.getSource();
                 if(square1.hasFrog() == false){
                     square1 = null;
                     return;
                 }
+
                 if(square1.isRedFrog() == true){
                     square1.setIcon(Square.redFrogS);
                 }
+
                 else{
                     square1.setIcon(Square.greenFrogS);
                 }
             }
             else{ 
                 square2 = (Square)e.getSource();
+
                 if(square2.hasFrog() == true){
                     if(square1.isRedFrog() == true){
                         square1.setIcon(Square.redFrog);
@@ -72,6 +75,7 @@ public class Board
                     square2 = null;
                     return;
                 }
+
                 if(square1.isRedFrog() == true){
                     square1.setIcon(Square.redFrog);
                 }
