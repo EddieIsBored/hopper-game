@@ -12,7 +12,8 @@ public class Board
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private ReadByChar character = new ReadByChar();
-    Square[][] sqArr = new Square[5][5];
+    static Square[][] sqArr = new Square[5][5];
+    static int greenFrogTotal = 0;
 
     public Board() throws IOException
     {
@@ -38,29 +39,44 @@ public class Board
 
     Square square1 = null;
     Square square2 = null;
-
-    // ImageIcon greenFrogS = new ImageIcon("images/GreenFrog2.png");
-    // ImageIcon greenFrog = new ImageIcon("images/GreenFrog.png");
-    // ImageIcon redFrog = new ImageIcon("images/RedFrog.png");
-    // ImageIcon redFrogS = new ImageIcon("images/RedFrog2.png");
-
     ActionListener l = new ActionListener(){
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e){
             if(!(e.getSource() instanceof Square)){
                 return;
             }
+            // if(greenFrogTotal == 0){
+            //     return;
+            // }
             if(square1 == null){
                 square1 = (Square)e.getSource();
                 if(square1.hasFrog() == false){
                     square1 = null;
                     return;
                 }
+                if(square1.isRedFrog() == true){
+                    square1.setIcon(Square.redFrogS);
+                }
+                else{
+                    square1.setIcon(Square.greenFrogS);
+                }
             }
             else{ 
                 square2 = (Square)e.getSource();
                 if(square2.hasFrog() == true){
+                    if(square1.isRedFrog() == true){
+                        square1.setIcon(Square.redFrog);
+                    }
+                    else{
+                        square1.setIcon(Square.greenFrog);
+                    }
                     square2 = null;
                     return;
+                }
+                if(square1.isRedFrog() == true){
+                    square1.setIcon(Square.redFrog);
+                }
+                else{
+                    square1.setIcon(Square.greenFrog);
                 }
                 square1.moveTo(square2);
                 square1 = null;
