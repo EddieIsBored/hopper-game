@@ -20,7 +20,7 @@ public class ReadByChar
         byte[] bytes = new byte[64];
         char c = 'a';
         try {
-            InputStream f = new FileInputStream("board1.txt");   
+            InputStream f = new FileInputStream("boards/board1.hop");   
             f.read(bytes);
             c = (char)(bytes[j]);
             f.close();
