@@ -35,8 +35,15 @@ public class Board
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
+
     Square square1 = null;
     Square square2 = null;
+
+    // ImageIcon greenFrogS = new ImageIcon("images/GreenFrog2.png");
+    // ImageIcon greenFrog = new ImageIcon("images/GreenFrog.png");
+    // ImageIcon redFrog = new ImageIcon("images/RedFrog.png");
+    // ImageIcon redFrogS = new ImageIcon("images/RedFrog2.png");
+
     ActionListener l = new ActionListener(){
         public void actionPerformed(ActionEvent e) {
             if(!(e.getSource() instanceof Square)){
@@ -44,12 +51,21 @@ public class Board
             }
             if(square1 == null){
                 square1 = (Square)e.getSource();
+                if(square1.hasFrog() == false){
+                    square1 = null;
+                    return;
+                }
             }
             else{ 
                 square2 = (Square)e.getSource();
+                if(square2.hasFrog() == true){
+                    square2 = null;
+                    return;
+                }
                 square1.moveTo(square2);
                 square1 = null;
             }
+
         }
     };
 }

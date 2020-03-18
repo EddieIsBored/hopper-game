@@ -10,17 +10,16 @@ public class Square extends JButton
     private int row;
     private int column;
     private char type;
-    private boolean hasFrog;
-    private boolean isRedFrog;
-    private boolean selected=false;
-    private boolean sSelected=false;
+    private Boolean isRedFrog;
+    private Boolean hasFrog;
 
-    ImageIcon water = new ImageIcon("images/Water.png");
-    ImageIcon lilypad = new ImageIcon("images/LilyPad.png");
-    ImageIcon greenFrog = new ImageIcon("images/GreenFrog.png");
-    ImageIcon redFrog = new ImageIcon("images/RedFrog.png");
-    ImageIcon greenFrogS = new ImageIcon("images/GreenFrog2.png");
-    ImageIcon redFrogS = new ImageIcon("images/RedFrog2.png");
+    private static ImageIcon water = new ImageIcon("images/Water.png");
+    private static ImageIcon lilypad = new ImageIcon("images/LilyPad.png");
+    private static ImageIcon greenFrog = new ImageIcon("images/GreenFrog.png");
+    private static ImageIcon redFrog = new ImageIcon("images/RedFrog.png");
+    private static ImageIcon redFrogS = new ImageIcon("images/RedFrog2.png");
+    private static ImageIcon greenFrogS = new ImageIcon("images/GreenFrog2.png");
+
 
     /**
      * Defines a square on the board
@@ -30,42 +29,69 @@ public class Square extends JButton
      */
 
     Square(int i, int j, char type){
-        row = i;
-        column = j;
-        System.out.print(type);
+        this.row = i;
+        this.column = j;
         switch(type){
             case 'L':
-                hasFrog = false;
-                type = 'L';
+                this.hasFrog = false;
+                this.type = 'L';
                 setIcon(lilypad);
                 break;
             case 'G':
-                hasFrog = true;
-                type = 'G';
+                this.hasFrog = true;
+                this.type = 'G';
                 setIcon(greenFrog);
                 break;
             case 'R':
-                hasFrog = true;
-                isRedFrog = true;
-                type = 'R';
+                this.hasFrog = true;
+                this.isRedFrog = true;
+                this.type = 'R';
                 setIcon(redFrog);
                 break;
             default:
-                hasFrog = false;
-                type = 'W';
+                this.hasFrog = false;
+                this.type = 'W';
                 setIcon(water);
         }
     }
     /**
      * Swaps a square to the Square input as 
-     * @param x The square the original Square will move to.
+     * @param newSquare The square the original Square will move to.
      */
 
-    public void moveTo(Square x){
+    public void moveTo(Square newSquare){
+        int fromRow = getRow();
+        int fromCol = getColumn();
+        int toRow = newSquare.getRow();
+        int toCol = newSquare.getColumn();
         Icon oldIcon = getIcon();
-        Icon newIcon = x.getIcon();
-        x.setIcon(oldIcon);
-        setIcon(newIcon);
+        Icon newIcon = newSquare.getIcon();
+
+        if(validMove(fromRow,fromCol,toRow,toCol) == true){
+            this.hasFrog = false;
+            newSquare.hasFrog = true;
+            newSquare.setIcon(oldIcon);
+            setIcon(newIcon);
+        }
+    }
+
+    public Boolean validMove(int r1, int c1, int r2, int c2){
+        if(r1 - r2 == 0){
+            if(Math.abs(c1 - c2) == 4){
+                return true;
+            }
+        }
+        if(c1 - c2 == 0){
+            if(Math.abs(r1 - r2) == 4){
+                return true;
+            }
+        }
+        if(Math.abs(c1 - c2) == 2){
+            if(Math.abs(r1 - r2) == 2){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getRow(){
@@ -74,13 +100,13 @@ public class Square extends JButton
     public int getColumn(){
         return column;
     }
-    public boolean hasFrog(){
+    public Boolean hasFrog(){
         return hasFrog;
     }
-    public boolean isRedFrog(){
+    public Boolean isRedFrog(){
         return isRedFrog;
     }
-    public boolean selected(){
-        return selected;
+    public char getType(){
+        return type;
     }
 }
