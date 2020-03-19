@@ -2,7 +2,7 @@
  * Main - Entrypoint to program
  * @author Edward Nokes
  */
-import java.io.*;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Main

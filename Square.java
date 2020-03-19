@@ -3,7 +3,9 @@
  * Square - determines the position of the square
  * @author Edward Nokes
  */
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 public class Square extends JButton
 {
