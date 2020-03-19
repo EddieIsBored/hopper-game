@@ -4,3 +4,6 @@
 
 # Ignore vscode files
 .vscode/
+
+# Ignore javadocs files
+.javadocs/
