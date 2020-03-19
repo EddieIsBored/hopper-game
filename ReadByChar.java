@@ -15,12 +15,13 @@ public class ReadByChar
      * @return Returns a character
      * @throws java.io.IOException When file not found
      */
+
     public char ReadChars(int j) throws IOException
     {
         byte[] bytes = new byte[64];
         char c = 'a';
         try {
-            InputStream f = new FileInputStream("boards/board1.hop");   
+            InputStream f = new FileInputStream("boards/board" + Main.level + ".hop");   
             f.read(bytes);
             c = (char)(bytes[j]);
             f.close();
