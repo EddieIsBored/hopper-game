@@ -6,4 +6,4 @@
 .vscode/
 
 # Ignore javadocs files
-.javadocs/
+javadocs/
