@@ -21,10 +21,10 @@ public class ReadByChar
         byte[] bytes = new byte[64];
         char c = 'a';
         try {
-            InputStream f = new FileInputStream("boards/board" + Main.level + ".hop");   
-            f.read(bytes);
-            c = (char)(bytes[j]);
-            f.close();
+            InputStream f = new FileInputStream("boards/board" + Main.level + ".hop");   //loads the level
+            f.read(bytes);  //stores the read file into the array bytes.
+            c = (char)(bytes[j]); //finds the character c in the file with an offset of j
+            f.close(); 
         }
         catch(IOException ioex) {
             System.out.println(ioex.toString());

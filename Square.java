@@ -31,9 +31,9 @@ public class Square extends JButton
      */
 
     Square(int i, int j, char type){
-        this.row = i;
-        this.column = j;
-        switch(type){
+        this.row = i; //stores row
+        this.column = j; //stores column
+        switch(type){ 
             case 'L':
                 this.hasFrog = false;
                 this.type = 'L';
@@ -43,7 +43,7 @@ public class Square extends JButton
                 this.hasFrog = true;
                 this.type = 'G';
                 setIcon(greenFrog);
-                Board.greenFrogTotal++;
+                Board.greenFrogTotal++; //used to track how many frogs there are
                 break;
             case 'R':
                 this.hasFrog = true;
@@ -63,6 +63,7 @@ public class Square extends JButton
      */
 
     public void moveTo(Square newSquare){
+        //must get all the properties of the previous square, and the properties of the new square it will be moving to.
         int fromRow = getRow();
         int fromCol = getColumn();
         int toRow = newSquare.getRow();
@@ -74,17 +75,17 @@ public class Square extends JButton
         Boolean isRedFrog = isRedFrog();
 
         if(validMove(fromRow,fromCol,toRow,toCol) == true){
-            if(Board.sqArr[middleRow][middleColumn].hasFrog() && Board.sqArr[middleRow][middleColumn].isRedFrog() == false){
-                Board.sqArr[middleRow][middleColumn].hasFrog = false;
-                Board.sqArr[middleRow][middleColumn].setIcon(lilypad);
-                Board.greenFrogTotal--;
-                this.hasFrog = false;
-                this.isRedFrog = false;
-                newSquare.hasFrog = true;
+            if(Board.sqArr[middleRow][middleColumn].hasFrog() && Board.sqArr[middleRow][middleColumn].isRedFrog() == false){ //For a jump to be valid, there must be a frog inbetween it and that frog cannot be red.
+                Board.sqArr[middleRow][middleColumn].hasFrog = false; //the frog is removed
+                Board.sqArr[middleRow][middleColumn].setIcon(lilypad); 
+                Board.greenFrogTotal--; //total frogs be gone
+                this.hasFrog = false; //when the frog movies, the frog is gone
+                this.isRedFrog = false; //also cannot be the red frog
+                newSquare.hasFrog = true; //the frog can only move from 
                 if(isRedFrog){
-                    newSquare.isRedFrog = true;
+                    newSquare.isRedFrog = true; //if the frog is red originally, it must be red now!
                 }
-                newSquare.setIcon(oldIcon);
+                newSquare.setIcon(oldIcon); 
                 setIcon(newIcon);
             }
         }
@@ -103,10 +104,10 @@ public class Square extends JButton
         }
         if(Math.abs(c1 - c2) == 2){ //has to move 2 vertically
             if(Math.abs(r1 - r2) == 2){ //has to move 2 horizontally to move diagonally 
-                return true;
+                return true; //both of these must be true to make a move.
             }
         }
-        return false; 
+        return false; //else, return false
     }
 
     /**
